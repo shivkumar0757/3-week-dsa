@@ -69,19 +69,44 @@ class Graph:
                     if neighbour not in visited:
                         stack.append(neighbour)
 
+    def bfs_v(self, u):
+        queue = deque()
+        visited = set()
+        queue.append(u)
+        while queue:
+            n = len(queue)
+            for i in range(n):
+                elem = queue.popleft()
+                if elem  in visited: continue
+
+                print(elem)
+                visited.add(elem)
+
+                for neigh in self.adj_list[elem]:
+                    queue.append(neigh)
 
 graph = Graph()
+# VB graph
+graph.add_edge(1,2)
+graph.add_edge(1,3)
+graph.add_edge(1,4)
 
-graph.add_edge(0, 1)
-graph.add_edge(0, 2)
-graph.add_edge(1, 3)
-graph.add_edge(1, 4)
-graph.add_edge(2, 4)
+graph.add_edge(2,5)
+graph.add_edge(3,4)
+graph.add_edge(3,5)
+graph.add_edge(4,5)
+graph.bfs_v(1)
 
-start_point = 0
-print(graph.adj_list)
-graph.bfs(start_point)
-print('\n---BFS below----')
-graph.dfs(start_point, set(), graph.adj_list)
 
-       
+# graph.add_edge(0, 1)
+# graph.add_edge(0, 2)
+# graph.add_edge(1, 3)
+# graph.add_edge(1, 4)
+# graph.add_edge(2, 4)
+
+# start_point = 0
+# print(graph.adj_list)
+# graph.bfs(start_point)
+# print('\n---BFS below----')
+# graph.dfs(start_point, set(), graph.adj_list)
+
